@@ -15,7 +15,7 @@ It follows the [Semantic Versioning 2.0 specification](https://semver.org/), pro
 
 When using semantic versioning, there are strict rules about what is and is not a valid version string.
 For this reasion, the standard initialiser is marked with `throws`, leaving it up to the caller to decide what to do if an error arrises.
-```
+```swift
 let version = try Version(major: 1)
 let version = try Version(major: 1, minor: 2)
 let version = try Version(major: 1, minor: 2, patch: 3)
@@ -25,7 +25,7 @@ let version = try Version(major: 1, minor: 2, patch: 3, prerelease: "beta", meta
 ```
 
 You can however also initialise a `Version` directly from a `String`.
-```
+```swift
 let version: Version = "1"
 let version: Version = "1.2"
 let version: Version = "1.2.3"
@@ -39,7 +39,7 @@ For this reason, if an invalid value is provided, an error message will be logge
 ### Compare
 The `Version` struct conforms to the `Comparable` protocol.
 
-```
+```swift
 if version1 < version2 { ... }
 if version1 > version2 { ... }
 if version1 == version2 { ... }  // ignores metadata
