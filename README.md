@@ -1,7 +1,7 @@
 # Version
 
 `Version` is a one file library that provides a `Version` data structure, designed to represent a software version.
-It follows the [Semantic Versioning 2.0 specification](https://semver.org/), providing validation whenever a `Version` is initialised.
+It follows the [Semantic Versioning 2.0 specification][1], providing validation whenever a `Version` is initialised.
 
 ## Why This Library
 - Simple one file implementation
@@ -57,6 +57,7 @@ These requirements are however often overlooked, and thus are a common source of
 ## Installation
 ### Swift Package Manager (SPM)
 Xcode 11 enables you to easily add packages from your project settings.
+![Add to Xcode Walkthrough][https://imgur.com/454Tcij]
 You can also manually edit your `Package.swift`, adding the following line.
 `package.append(.package(url: "https://github.com/nathanblamires/Version.git", from: "1.0.0"))`
 
