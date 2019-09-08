@@ -1,7 +1,6 @@
 import XCTest
 @testable import Version
 
-@available(iOS 13.0, *)
 final class VersionTests: XCTestCase {
     
     func testCommonInit() {

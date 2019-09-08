@@ -8,7 +8,6 @@
 
 import Foundation
 
-@available(iOS 13.0, *)
 struct Version: Codable, Hashable {
         
     // Details of how semantic versioning works at: https://semver.org/
@@ -44,14 +43,16 @@ struct Version: Codable, Hashable {
         
         let validPrerelease = prerelease.map { value -> Bool in
             let scanner = Scanner(string: value)
-            _ = scanner.scanCharacters(from: CharacterSet.indentifiersString)
+            var scanResult: NSString? = nil
+            scanner.scanCharacters(from: CharacterSet.indentifiersString, into: &scanResult)
             return scanner.isAtEnd
         }
         guard (validPrerelease ?? true) else { throw Error.invalidPrereleaseString }
         
         let validMetadata = metadata.map { value -> Bool in
             let scanner = Scanner(string: value)
-            _ = scanner.scanCharacters(from: CharacterSet.indentifiersString)
+            var scanResult: NSString? = nil
+            scanner.scanCharacters(from: CharacterSet.indentifiersString, into: &scanResult)
             return scanner.isAtEnd
         }
         guard (validMetadata ?? true) else { throw Error.invalidMetadataString }
@@ -78,7 +79,6 @@ struct Version: Codable, Hashable {
 
 // MARK:- CustomStringConvertible
 
-@available(iOS 13.0, *)
 extension Version: CustomStringConvertible {
     
     var description: String {
@@ -95,17 +95,14 @@ extension Version: CustomStringConvertible {
 
 // MARK: - Comparable
 
-@available(iOS 13.0, *)
 func === (lhs: Version, rhs: Version) -> Bool {
     (lhs == rhs) && (lhs.metadataString == rhs.metadataString)
 }
 
-@available(iOS 13.0, *)
 func !==(lhs: Version, rhs: Version) -> Bool {
     return !(lhs === rhs)
 }
 
-@available(iOS 13.0, *)
 extension Version: Comparable {
     
     static func == (lhs: Version, rhs: Version) -> Bool {
@@ -155,7 +152,6 @@ extension Version: Comparable {
 
 // MARK:- ExpressibleByStringLiteral
 
-@available(iOS 13.0, *)
 extension Version: ExpressibleByStringLiteral {
     
     typealias StringLiteralType = String
