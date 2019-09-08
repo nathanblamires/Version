@@ -57,7 +57,7 @@ These requirements are however often overlooked, and thus are a common source of
 ## Installation
 ### Swift Package Manager (SPM)
 Xcode 11 enables you to easily add packages from your project settings.
-<img src="https://imgur.com/454Tcij" width="600" height="375">
+<img src="https://i.imgur.com/454Tcij.gif" width="600" height="375">
 You can also manually edit your `Package.swift`, adding the following line.
 `package.append(.package(url: "https://github.com/nathanblamires/Version.git", from: "1.0.0"))`
 
