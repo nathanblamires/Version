@@ -55,10 +55,13 @@ These requirements are however often overlooked, and thus are a common source of
 - Metadata string must only contain letters, numbers and hyphens. A period (.) can also be included to delimeter identifiers.  
 
 ## Installation
-### Swift Package Manager (SPM)
-Xcode 11 enables you to easily add packages from your project settings.
+### Swift Package Manager (Xcode 11)
+Xcode 11 enables you to easily add packages from the project settings for iOS and Mac applications.
+Simply copy the link  `git@github.com:nathanblamires/Version.git` , and paste it into the search box that appears when adding a package. 
 <img src="https://i.imgur.com/454Tcij.gif" width="600" height="375">
-You can also manually edit your `Package.swift`, adding the following line.
+
+### Swift Package Manager (Manual Installation)
+Add the following line to your `Package.swift` file.
 `package.append(.package(url: "https://github.com/nathanblamires/Version.git", from: "1.0.0"))`
 
 ### Copy `Version` File
