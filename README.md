@@ -11,7 +11,7 @@ It follows the [Semantic Versioning 2.0 specification](https://semver.org/), pro
 
 ## Usage
 
-### Init
+### Initialise
 
 When using semantic versioning, there are strict rules about what is and is not a valid version string.
 For this reasion, the standard initialiser is marked with `throws`, leaving it up to the caller to decide what to do if an error arrises.
@@ -22,6 +22,7 @@ let version = try Version(major: 1, minor: 2, patch: 3)
 let version = try Version(major: 1, minor: 2, patch: 3, prerelease: "beta")
 let version = try Version(major: 1, minor: 2, patch: 3, metadata: "qwer.asdf")
 let version = try Version(major: 1, minor: 2, patch: 3, prerelease: "beta", metadata: "qwer.asdf")
+let version = try Version(major: 1, minor: 2, patch: 3, prereleaseIdentifiers: ["beta"], metadataIdentifiers: ["qwer", "asdf"])
 ```
 
 You can however also initialise a `Version` directly from a `String`.
