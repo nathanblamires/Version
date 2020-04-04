@@ -8,30 +8,30 @@
 
 import Foundation
 
-struct Version: Codable, Hashable {
+public struct Version: Codable, Hashable {
         
     // Details of how semantic versioning works at: https://semver.org/
     
-    let major: Int
-    let minor: Int
-    let patch: Int
+    public let major: Int
+    public let minor: Int
+    public let patch: Int
     
-    let prereleaseString: String?
-    let metadataString: String?
+    public let prereleaseString: String?
+    public let metadataString: String?
     
-    var prereleaseIdentifiers: [String] {
+    public var prereleaseIdentifiers: [String] {
         prereleaseString?.split(separator: ".").map { String($0) } ?? []
     }
     
-    var metadataIdentifiers: [String] {
+    public var metadataIdentifiers: [String] {
         metadataString?.split(separator: ".").map { String($0) } ?? []
     }
     
-    var isPrerelease: Bool {
+    public var isPrerelease: Bool {
         !prereleaseIdentifiers.isEmpty
     }
     
-    init(major: Int = 0, minor: Int = 0, patch: Int = 0, prerelease: String? = nil, metadata: String? = nil) throws {
+    public init(major: Int = 0, minor: Int = 0, patch: Int = 0, prerelease: String? = nil, metadata: String? = nil) throws {
         
         guard major >= 0, minor >= 0, patch >= 0 else {
             throw Error.illegalNegativeVersionNumbers
@@ -61,7 +61,7 @@ struct Version: Codable, Hashable {
         self.metadataString = metadata
     }
     
-    init(major: Int, minor: Int, patch: Int, prereleaseIdentifiers: [String], metadataIdentifiers: [String]) throws {
+    public init(major: Int, minor: Int, patch: Int, prereleaseIdentifiers: [String], metadataIdentifiers: [String]) throws {
         let hasPrereleasIdentifiers = prereleaseIdentifiers.count > 0
         let prerelease: String? = hasPrereleasIdentifiers ? prereleaseIdentifiers.joined(separator: ".") : nil
         let hasMetadataIdentifiers = metadataIdentifiers.count > 0
@@ -69,7 +69,7 @@ struct Version: Codable, Hashable {
         try self.init(major: major, minor: minor, patch: patch, prerelease: prerelease, metadata: metadata)
     }
     
-    enum Error: Swift.Error {
+    public enum Error: Swift.Error {
         case malformedVersionString
         case invalidPrereleaseString
         case invalidMetadataString
@@ -81,7 +81,7 @@ struct Version: Codable, Hashable {
 
 extension Version: CustomStringConvertible {
     
-    var description: String {
+    public var description: String {
         var text = "\(major).\(minor).\(patch)"
         if let prerelease = prereleaseString {
             text += "-\(prerelease)"
@@ -95,24 +95,24 @@ extension Version: CustomStringConvertible {
 
 // MARK: - Comparable
 
-func === (lhs: Version, rhs: Version) -> Bool {
+public func === (lhs: Version, rhs: Version) -> Bool {
     (lhs == rhs) && (lhs.metadataString == rhs.metadataString)
 }
 
-func !==(lhs: Version, rhs: Version) -> Bool {
+public func !==(lhs: Version, rhs: Version) -> Bool {
     return !(lhs === rhs)
 }
 
 extension Version: Comparable {
     
-    static func == (lhs: Version, rhs: Version) -> Bool {
+    public static func == (lhs: Version, rhs: Version) -> Bool {
         return lhs.major == rhs.major &&
             lhs.minor == rhs.minor &&
             lhs.patch == rhs.patch &&
             lhs.prereleaseString == rhs.prereleaseString
     }
     
-    static func < (lhs: Version, rhs: Version) -> Bool {
+    public static func < (lhs: Version, rhs: Version) -> Bool {
           
         // handle major/minor/patch difference
         let lhsComponents = [lhs.major, lhs.minor, lhs.patch]
@@ -132,7 +132,7 @@ extension Version: Comparable {
         }
     }
     
-    static func isPrerelease(_ lhs: String, lessThan rhs: String) -> Bool {
+    public static func isPrerelease(_ lhs: String, lessThan rhs: String) -> Bool {
         
         let lhsIds = lhs.split(separator: ".").map { String($0) }
         let rhsIds = rhs.split(separator: ".").map { String($0) }
@@ -154,9 +154,9 @@ extension Version: Comparable {
 
 extension Version: ExpressibleByStringLiteral {
     
-    typealias StringLiteralType = String
+    public typealias StringLiteralType = String
     
-    init(_ value: String, strict: Bool = false) throws {
+    public init(_ value: String, strict: Bool = false) throws {
         
         let scanner = Scanner(string: value)
         
@@ -238,7 +238,7 @@ extension Scanner {
         }
     }
     
-    enum Error: Swift.Error {
+    public enum Error: Swift.Error {
         case leadingZerosProhibited
         case invalidNumber
         case invalidIdentifier
@@ -260,3 +260,4 @@ extension CharacterSet {
         return NSMutableCharacterSet(charactersIn: characters) as CharacterSet
     }()
 }
+
